@@ -1,87 +1,50 @@
-// imports
-const fs = require("fs");
-const path = require("path");
-const templatesFolder = path.resolve(__dirname, "../src");
-console.log(templatesFolder);
+fs = require("fs");
 
-const generateHTML = (employees) => {
+function generateHTML(employees) {
+  // accepts list of classes, generate cards, insert into template, save local
   console.log(employees);
-  const HTML = [];
 
-  HTML.push(
-    employees
-      .filter((employee) => employee.getRole() === "Manager")
-      .map((manager) => renderManager(manager))
+  let cardStack = "";
+
+  // construct cards, iterate through key and value
+  for (let employee of employees) {
+    let info = "";
+    for (const [key, value] of Object.entries(employee)) {
+      info = info + `<p class="card-header-title">${key}: ${value}</p>`;
+    }
+    let card = `<div class="card">
+      <header class="card-header">
+        ${info}
+        <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </header>
+    </div>`;
+    cardStack = cardStack + card;
+  }
+
+  // construct template, insert cards
+  const template = `
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Team Profile</title>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  </head>
+  <body style="display:flex">
+      <div style="flex-wrap:wrap;margin:5%;padding:5%;">${cardStack}</div>
+  </body>
+  </html>
+  `;
+
+  fs.writeFile("./TeamProfile.html", template, (err) =>
+    err ? console.log("Error writing to file") : console.log("Created file")
   );
-
-  HTML.push(
-    employees
-      .filter((employee) => employee.getRole() === "Engineer")
-      .map((engineer) => renderEngineer(engineer))
-  );
-
-  HTML.push(
-    employees
-      .filter((employee) => employee.getRole() === "Intern")
-      .map((intern) => renderIntern(intern))
-  );
-  return renderHTML(HTML.join(""));
-};
-
-const renderManager = (manager) => {
-  console.log("render manager");
-  let template = fs.readFileSync(
-    path.resolve(templatesFolder, "manager.html"),
-    "utf8"
-  );
-
-  template = replaceTemplates(template, "name", manager.getName());
-  template = replaceTemplates(template, "id", manager.getId());
-  template = replaceTemplates(template, "email", manager.getEmail());
-  template = replaceTemplates(template, "role", manager.getRole());
-  template = replaceTemplates(
-    template,
-    "officeNumber",
-    manager.getofficeNumber()
-  );
-  return template;
-};
-
-function renderEngineer() {
-  let template = fs.readFileSync(
-    path.resolve(templatesFolder, "engineer.html"),
-    "utf8"
-  );
-
-  template = replaceTemplates(template, "name", engineer.getName());
-  template = replaceTemplates(template, "id", engineer.getId());
-  template = replaceTemplates(template, "email", engineer.getEmail());
-  template = replaceTemplates(template, "role", engineer.getRole());
-  template = replaceTemplates(template, "github", engineer.getGithub());
-  return template;
 }
-
-function renderIntern() {
-  let template = fs.readFileSync(
-    path.resolve(templatesFolder, "intern.html"),
-    "utf8"
-  );
-
-  template = replaceTemplates(template, "name", intern.getName());
-  template = replaceTemplates(template, "id", intern.getId());
-  template = replaceTemplates(template, "email", intern.getEmail());
-  template = replaceTemplates(template, "role", intern.getRole());
-  template = replaceTemplates(template, "school", intern.getSchool());
-  return template;
-}
-
-const renderHTML = (HTML) => {
-  let template = fs.resolve(templatesFolder, "full-markdown.html", "utf8");
-};
-
-const replaceTemplates = (template, placeholder, value) => {
-  const pattern = new RegExp(`{{$(placeholder)}}`, "gm");
-  return template.replace(pattern, value);
-};
 
 module.exports = generateHTML;
