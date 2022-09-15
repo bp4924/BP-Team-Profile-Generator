@@ -38,19 +38,24 @@ const newEmployee = async () => {
     switch (employeeRole) {
       case "Manager":
         extraField = "Office Number";
+        newEmployee();
         //        createManager(employeeRole);
         break;
       case "Engineer":
         //        createEngineer(employeeRole);
         extraField = "github username";
+        newEmployee();
         break;
       case "Intern":
         //        createIntern(employeeRole);
         extraField = "school";
+        newEmployee();
         break;
       default:
         console.log("team complete 42");
         isTeamComplete = true;
+        const indexHTML = generateHTML(employees);
+        console.log("indexHTML " + indexHTML);
     }
     console.log(employeeRole);
     // function extraField(employeeRole) {
