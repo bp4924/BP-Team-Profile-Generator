@@ -12,7 +12,7 @@ function generateHTML(employees) {
         // name styling
         info =
           info +
-          `<p class="flex-start p-2 text-xl bg-blue-600 text-white font-bold rounded"> ${value}</p>`;
+          `<p class="flex-start p-2 text-xl bg-blue-900 text-white font-bold rounded"> ${value}</p>`;
       } else if (key === "email") {
         info =
           info +
@@ -27,7 +27,7 @@ function generateHTML(employees) {
       }
     }
     let card = `<div class="flex justify-center m-3">
-      <header class="border-solid border-2 border-black rounded bg-orange-200 w-2/5">
+      <header class="border-solid border-2 border-black rounded bg-orange-300 w-2/5">
         ${info}
       </header>
     </div>`;
