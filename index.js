@@ -50,7 +50,7 @@ function addManager() {
     .then((e) => {
       const manager = new Manager(e.name, e.id, e.email, e.officeNumber);
       employees.push(manager);
-      console.log("Manager added to roster!");
+      console.log("Added a Manager for the team");
       console.log(employees);
     })
     .then(() => addEmployee());
@@ -101,7 +101,7 @@ function addEmployee() {
           .then((e) => {
             const engineer = new Engineer(e.name, e.id, e.email, e.github);
             employees.push(engineer);
-            console.log("Engineer added");
+            console.log("Added an Engineer to the team");
             console.log(employees);
           })
           .then(() => {
@@ -138,7 +138,7 @@ function addEmployee() {
           .then((e) => {
             const intern = new Intern(e.name, e.id, e.email, e.school);
             employees.push(intern);
-            console.log("Intern added");
+            console.log("Added an Intern to the team");
             console.log(employees);
           })
           .then(() => {

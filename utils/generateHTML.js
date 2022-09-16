@@ -13,13 +13,21 @@ function generateHTML(employees) {
         info =
           info +
           `<p class="flex-start p-2 text-xl bg-blue-600 text-white font-bold rounded"> ${value}</p>`;
+      } else if (key === "email") {
+        info =
+          info +
+          `<p class="flex-wrap p-2 text-lg"> ${key} : <a class="underline text-blue-700" href="mailTo: ${value}?subject=Hello!" alt="${value}">${value}</a></p>`;
+      } else if (key === "github") {
+        info =
+          info +
+          `<p class="flex-wrap p-2 text-lg"> ${key} : <a class="underline text-blue-700" href="https://github.com/" alt="${value}">${value}</a></p>`;
       } else {
-        // +++ add email & github links
         info = info + `<p class="flex-wrap p-2 text-lg"> ${key} : ${value}</p>`;
+        // +++ add github links
       }
     }
-    let card = `<div class="bg-orange-200 m-2">
-      <header class="border-solid border-2 border-black rounded">
+    let card = `<div class="flex justify-center m-3">
+      <header class="border-solid border-2 border-black rounded bg-orange-200 w-2/5">
         ${info}
       </header>
     </div>`;
@@ -37,7 +45,7 @@ function generateHTML(employees) {
       <title>Team Profile</title>
   </head>
   <body >
-      <div class="flex justify-center m-2 w-250">
+      <div class="flex-col align-center m-2 md:flex-row md:justify-center">
 
       ${cardStack}
       </div>
