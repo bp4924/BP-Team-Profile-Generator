@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const fs = require("fs");
+//const fs = require("fs");
 
 const generateHTML = require("./utils/generateHTML.js");
 
@@ -24,36 +24,31 @@ function addManager() {
     .prompt([
       {
         type: "input",
-        name: "managerName",
+        name: "name",
         message: "Team Manager Name",
         validate: validateInput,
       },
       {
         type: "input",
-        name: "managerId",
+        name: "id",
         message: "Team Manager ID",
         validate: validateInput,
       },
       {
         type: "input",
-        name: "managerEmail",
+        name: "email",
         message: "Team Manager email",
         validate: validateInput,
       },
       {
         type: "input",
-        name: "managerOfficeNumber",
+        name: "officeNumber",
         message: "Office Number",
         validate: validateInput,
       },
     ])
     .then((e) => {
-      const manager = new Manager(
-        e.managerName,
-        e.managerId,
-        e.managerEmail,
-        e.managerOfficeNumber
-      );
+      const manager = new Manager(e.name, e.id, e.email, e.officeNumber);
       employees.push(manager);
       console.log("Manager added to roster!");
       console.log(employees);
@@ -80,32 +75,31 @@ function addEmployee() {
           .prompt([
             {
               type: "input",
-              name: "engineerName",
+              name: "name",
               message: "Employee Name",
+              validate: validateInput,
             },
             {
               type: "input",
-              name: "engineerId",
+              name: "id",
               message: "Employee ID",
+              validate: validateInput,
             },
             {
               type: "input",
-              name: "engineerEmail",
+              name: "email",
               message: "Employee email",
+              validate: validateInput,
             },
             {
               type: "input",
-              name: "engineerGithub",
+              name: "github",
               message: "Github username",
+              validate: validateInput,
             },
           ])
           .then((e) => {
-            const engineer = new Engineer(
-              e.engineerName,
-              e.engineerId,
-              e.engineerEmail,
-              e.engineerGithub
-            );
+            const engineer = new Engineer(e.name, e.id, e.email, e.github);
             employees.push(engineer);
             console.log("Engineer added");
             console.log(employees);
@@ -118,32 +112,31 @@ function addEmployee() {
           .prompt([
             {
               type: "input",
-              name: "internName",
+              name: "name",
               message: "Employee Name",
+              validate: validateInput,
             },
             {
               type: "input",
-              name: "internId",
+              name: "id",
               message: "Employee ID",
+              validate: validateInput,
             },
             {
               type: "input",
-              name: "internEmail",
+              name: "email",
               message: "Employee email",
+              validate: validateInput,
             },
             {
               type: "input",
-              name: "internSchool",
+              name: "school",
               message: "School",
+              validate: validateInput,
             },
           ])
           .then((e) => {
-            const intern = new Intern(
-              e.internName,
-              e.internId,
-              e.internEmail,
-              e.internSchool
-            );
+            const intern = new Intern(e.name, e.id, e.email, e.school);
             employees.push(intern);
             console.log("Intern added");
             console.log(employees);
