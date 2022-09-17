@@ -1,41 +1,44 @@
 fs = require("fs");
 
 function generateHTML(employees) {
-  console.log(employees);
-
   let cardStack = "";
 
   for (let employee of employees) {
     let info = "";
     for (const [key, value] of Object.entries(employee)) {
+      // build items for card
       if (key === "name") {
         // name styling
         info =
           info +
           `<p class="flex-start p-2 text-xl bg-blue-900 text-white font-bold rounded"> ${value}</p>`;
       } else if (key === "email") {
+        // email link
         info =
           info +
           `<p class="flex-wrap p-2 text-lg"> ${key} : <a class="underline text-blue-700" href="mailTo: ${value}?subject=Hello!" alt="${value}">${value}</a></p>`;
       } else if (key === "github") {
+        //github link
         info =
           info +
           `<p class="flex-wrap p-2 text-lg"> ${key} : <a class="underline text-blue-700" href="https://github.com/" alt="${value}">${value}</a></p>`;
       } else {
+        // other values
         info = info + `<p class="flex-wrap p-2 text-lg"> ${key} : ${value}</p>`;
-        // +++ add github links
       }
     }
+    // build card
     let card = `<div class="flex justify-center m-3">
       <header class="border-solid border-2 border-black rounded bg-orange-300 w-2/5">
         ${info}
       </header>
     </div>`;
+    // add card to stack
     cardStack = cardStack + card;
   }
 
-  // construct template, insert cards
-  const template = `
+  // build index.html
+  const buildHTML = `
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -54,7 +57,8 @@ function generateHTML(employees) {
   </html>
   `;
 
-  fs.writeFile("./index.html", template, (err) =>
+  // write to file
+  fs.writeFile("./index.html", buildHTML, (err) =>
     err
       ? console.log("Error: could not write to file")
       : console.log("index.html created/updated")
