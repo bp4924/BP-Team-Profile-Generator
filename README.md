@@ -26,11 +26,17 @@ GT Coding Bootcamp Challenge 10
 
 ## Installation
 
-      You must have Node and Inquirer 8.2.4 installed to run this app. Clone the app from my github and run it from the command line.
+      Clone the app from my github.
+
+      You must have Node and Inquirer 8.2.4 installed to run this app.
+
+      Type npm install inquirer@8.2.4 to install the required dependencies
 
 ## Usage
 
-      Type 'node index.js' to initiate this app. Follow the prompts to add team members and generate the HTML. Open index.html in your browser to view the results.
+      Type 'node index.js' to initiate this app. Follow the prompts to add team members and generate the HTML.
+
+      Open index.html in your browser to view the results.
 
 ## License
 
@@ -61,4 +67,4 @@ Copyright © 2022. All rights reserved.
 
 ## Demo Video
 
-none yet
+https://watch.screencastify.com/v/H3Fx0t2LXEaky0LiYaU6
