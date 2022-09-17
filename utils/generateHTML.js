@@ -49,6 +49,7 @@ function generateHTML(employees) {
   </head>
   <body >
       <div class="flex-col align-center m-2 md:flex-row md:justify-center">
+      <span class="flex justify-center text-6xl bolder italic">Team Profile</span>
 
       ${cardStack}
       </div>
